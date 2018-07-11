@@ -5,6 +5,7 @@
   "scripts": {},
   "devDependencies": {},
   "dependencies": {
+    "fs": "0.0.1-security",
     "minimist": "^1.2.0"
   },
   "bin": {
