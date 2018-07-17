@@ -1,10 +1,13 @@
 const fs = require('fs');
 
 module.exports = (args) => {
+
   const {
     component,
     path,
   } = args;
+
+  const componentFolderPath = `${path}/${component}`;
 
   if (!component) {
     console.error('You must specify a component name.');
@@ -13,17 +16,22 @@ module.exports = (args) => {
 
   if (!path) {
     console.error('You must specify a path for the component.');
-    console.log(process.cwd());
     process.exit(1);
   }
 
-  if (fs.statSync(path).isDirectory()) {
-    console.error(`A folder with the name ${component} at the location ${path} already exist.`);
-    console.log(process.cwd());
+  if (directoryExist(componentFolderPath)) {
+    console.error(`${componentFolderPath} already exist`);
     process.exit(1);
+  } else {
+    console.log('OKAY WE CAN CREATE IT');
   }
-  console.log('CREATE THIS FOLDER');
-  console.log(component);
-  console.log('AT THIS LOCATION');
-  console.log(path);
+};
+
+function directoryExist(directory) {
+  try {
+    fs.accessSync(directory);
+  } catch(e) {
+    return false;
+  }
+  return true
 }
