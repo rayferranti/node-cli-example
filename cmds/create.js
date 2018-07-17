@@ -23,7 +23,12 @@ module.exports = (args) => {
     console.error(`${componentDirectoryPath} already exist`);
     process.exit(1);
   } else {
-    console.log('OKAY WE CAN CREATE IT');
+
+    // Place within a try catch
+    fs.mkdirSync(componentDirectoryPath, 0777);
+    fs.writeFileSync(`${componentDirectoryPath}/${component}.js`);
+    fs.writeFileSync(`${componentDirectoryPath}/index.js`);
+    fs.writeFileSync(`${componentDirectoryPath}/style.scss`);
   }
 };
 
