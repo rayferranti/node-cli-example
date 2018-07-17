@@ -7,7 +7,7 @@ module.exports = (args) => {
     path,
   } = args;
 
-  const componentFolderPath = `${path}/${component}`;
+  const componentDirectoryPath = `${path}/${component}`;
 
   if (!component) {
     console.error('You must specify a component name.');
@@ -19,8 +19,8 @@ module.exports = (args) => {
     process.exit(1);
   }
 
-  if (directoryExist(componentFolderPath)) {
-    console.error(`${componentFolderPath} already exist`);
+  if (directoryExist(componentDirectoryPath)) {
+    console.error(`${componentDirectoryPath} already exist`);
     process.exit(1);
   } else {
     console.log('OKAY WE CAN CREATE IT');
