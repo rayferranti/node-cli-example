@@ -24,10 +24,25 @@ module.exports = (args) => {
     process.exit(1);
   } else {
 
+    const componentContent =
+    `import React from 'react';
+
+const ${component} = props => (
+  <div>Hello World</div>
+);
+
+export default ${component};`;
+
+    const componentIndexContent =
+    `import ${component} from './${component}';
+
+export default ${component};`;
+
+
     // Place within a try catch
     fs.mkdirSync(componentDirectoryPath, 0777);
-    fs.writeFileSync(`${componentDirectoryPath}/${component}.js`);
-    fs.writeFileSync(`${componentDirectoryPath}/index.js`);
+    fs.writeFileSync(`${componentDirectoryPath}/${component}.js`, componentContent);
+    fs.writeFileSync(`${componentDirectoryPath}/index.js`, componentIndexContent);
     fs.writeFileSync(`${componentDirectoryPath}/style.scss`);
   }
 };
